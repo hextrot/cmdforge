@@ -2004,4 +2004,960 @@ export const TOOL_CONFIGS: Record<string, ToolConfig> = {
       },
     ],
   },
+
+  // ── mysql ──────────────────────────────────────────────────────
+  mysql: {
+    binary: "mysql",
+    sections: [
+      {
+        title: "Connection",
+        defaultOpen: true,
+        fields: [
+          { id: "host", type: "text", label: "Host (-h)", flag: "-h", placeholder: "localhost", halfWidth: true },
+          { id: "port", type: "number", label: "Port (-P)", flag: "-P", placeholder: "3306", halfWidth: true },
+          { id: "user", type: "text", label: "User (-u)", flag: "-u", placeholder: "root", halfWidth: true },
+          { id: "password", type: "text", label: "Password (-p)", flag: "-p", placeholder: "password", halfWidth: true },
+          { id: "database", type: "text", label: "Database (-D)", flag: "-D", placeholder: "mydb" },
+        ],
+      },
+      {
+        title: "Execution",
+        defaultOpen: true,
+        fields: [
+          { id: "execute", type: "text", label: "Execute Query (-e)", flag: "-e", placeholder: "SELECT * FROM users LIMIT 10", quoted: true },
+          { id: "source", type: "text", label: "Source File (<)", flag: "<", placeholder: "dump.sql", hint: "Pipe SQL file via stdin redirect" },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: false,
+        fields: [
+          { id: "batch", type: "checkbox", label: "Batch mode (-B)", flag: "-B" },
+          { id: "table", type: "checkbox", label: "Table output (-t)", flag: "-t" },
+          { id: "verbose", type: "checkbox", label: "Verbose (-v)", flag: "-v" },
+          { id: "ssl", type: "checkbox", label: "Require SSL (--ssl)", flag: "--ssl" },
+          { id: "compress", type: "checkbox", label: "Compress (--compress)", flag: "--compress" },
+          { id: "defaultCharset", type: "text", label: "Charset (--default-character-set)", flag: "--default-character-set", placeholder: "utf8mb4", halfWidth: true },
+        ],
+      },
+    ],
+  },
+
+  // ── psql ───────────────────────────────────────────────────────
+  psql: {
+    binary: "psql",
+    sections: [
+      {
+        title: "Connection",
+        defaultOpen: true,
+        fields: [
+          { id: "host", type: "text", label: "Host (-h)", flag: "-h", placeholder: "localhost", halfWidth: true },
+          { id: "port", type: "number", label: "Port (-p)", flag: "-p", placeholder: "5432", halfWidth: true },
+          { id: "user", type: "text", label: "User (-U)", flag: "-U", placeholder: "postgres", halfWidth: true },
+          { id: "dbname", type: "text", label: "Database (-d)", flag: "-d", placeholder: "mydb", halfWidth: true },
+        ],
+      },
+      {
+        title: "Execution",
+        defaultOpen: true,
+        fields: [
+          { id: "command", type: "text", label: "Command (-c)", flag: "-c", placeholder: "SELECT * FROM users;", quoted: true },
+          { id: "file", type: "text", label: "SQL File (-f)", flag: "-f", placeholder: "schema.sql" },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: false,
+        fields: [
+          { id: "noPassword", type: "checkbox", label: "No password prompt (-w)", flag: "-w" },
+          { id: "tuples", type: "checkbox", label: "Tuples only (-t)", flag: "-t" },
+          { id: "html", type: "checkbox", label: "HTML output (-H)", flag: "-H" },
+          { id: "csv", type: "checkbox", label: "CSV output (--csv)", flag: "--csv" },
+          { id: "expanded", type: "checkbox", label: "Expanded output (-x)", flag: "-x" },
+          { id: "variable", type: "keyvalue", label: "Variables (-v)", flag: "-v", keyPlaceholder: "name", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Variable" },
+        ],
+      },
+    ],
+  },
+
+  // ── redis-cli ──────────────────────────────────────────────────
+  "redis-cli": {
+    binary: "redis-cli",
+    sections: [
+      {
+        title: "Connection",
+        defaultOpen: true,
+        fields: [
+          { id: "host", type: "text", label: "Host (-h)", flag: "-h", placeholder: "127.0.0.1", halfWidth: true },
+          { id: "port", type: "number", label: "Port (-p)", flag: "-p", placeholder: "6379", halfWidth: true },
+          { id: "auth", type: "text", label: "Password (-a)", flag: "-a", placeholder: "password", halfWidth: true },
+          { id: "db", type: "number", label: "Database (-n)", flag: "-n", placeholder: "0", halfWidth: true },
+          { id: "url", type: "text", label: "URL (-u)", flag: "-u", placeholder: "redis://user:pass@host:6379/0" },
+        ],
+      },
+      {
+        title: "Execution",
+        defaultOpen: true,
+        fields: [
+          { id: "command", type: "text", label: "Command", flag: "", positional: true, placeholder: "GET mykey", hint: "Redis command to execute" },
+          { id: "pipe", type: "checkbox", label: "Pipe mode (--pipe)", flag: "--pipe" },
+          { id: "scan", type: "checkbox", label: "Scan mode (--scan)", flag: "--scan" },
+          { id: "pattern", type: "text", label: "Scan Pattern (--pattern)", flag: "--pattern", placeholder: "user:*", halfWidth: true },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: false,
+        fields: [
+          { id: "tls", type: "checkbox", label: "TLS (--tls)", flag: "--tls" },
+          { id: "cluster", type: "checkbox", label: "Cluster mode (-c)", flag: "-c" },
+          { id: "repeat", type: "number", label: "Repeat (-r)", flag: "-r", placeholder: "1", halfWidth: true },
+          { id: "interval", type: "number", label: "Interval secs (-i)", flag: "-i", placeholder: "1", halfWidth: true },
+          { id: "bigkeys", type: "checkbox", label: "Find big keys (--bigkeys)", flag: "--bigkeys" },
+          { id: "stat", type: "checkbox", label: "Stat mode (--stat)", flag: "--stat" },
+        ],
+      },
+    ],
+  },
+
+  // ── sqlite3 ────────────────────────────────────────────────────
+  sqlite3: {
+    binary: "sqlite3",
+    sections: [
+      {
+        title: "Database",
+        defaultOpen: true,
+        fields: [
+          { id: "dbfile", type: "text", label: "Database File", flag: "", positional: true, placeholder: "data.db", required: true },
+          { id: "command", type: "text", label: "SQL Command", flag: "", positional: true, placeholder: "SELECT * FROM users;", quoted: true },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: true,
+        fields: [
+          { id: "header", type: "checkbox", label: "Show headers (-header)", flag: "-header" },
+          { id: "mode", type: "select", label: "Output Mode", flag: "", options: [
+            { value: "", label: "Default" },
+            { value: "-csv", label: "CSV" },
+            { value: "-json", label: "JSON" },
+            { value: "-table", label: "Table" },
+            { value: "-html", label: "HTML" },
+            { value: "-column", label: "Column" },
+            { value: "-line", label: "Line" },
+          ] },
+          { id: "separator", type: "text", label: "Separator (-separator)", flag: "-separator", placeholder: ",", halfWidth: true },
+          { id: "readonly", type: "checkbox", label: "Read-only (-readonly)", flag: "-readonly" },
+          { id: "init", type: "text", label: "Init File (-init)", flag: "-init", placeholder: "init.sql", halfWidth: true },
+          { id: "cmd", type: "text", label: "Dot command (-cmd)", flag: "-cmd", placeholder: ".schema", halfWidth: true, quoted: true },
+        ],
+      },
+    ],
+  },
+
+  // ── helm ───────────────────────────────────────────────────────
+  helm: {
+    binary: "helm",
+    subcommands: [
+      {
+        name: "install",
+        sections: [{
+          title: "Install Chart",
+          defaultOpen: true,
+          fields: [
+            { id: "name", type: "text", label: "Release Name", flag: "", positional: true, placeholder: "my-release", required: true },
+            { id: "chart", type: "text", label: "Chart", flag: "", positional: true, placeholder: "bitnami/nginx", required: true },
+            { id: "namespace", type: "text", label: "Namespace (-n)", flag: "-n", placeholder: "default", halfWidth: true },
+            { id: "version", type: "text", label: "Chart Version (--version)", flag: "--version", placeholder: "1.2.3", halfWidth: true },
+            { id: "values", type: "repeatable", label: "Values Files (-f)", flag: "-f", placeholder: "values.yaml", addLabel: "+ Add Values File" },
+            { id: "set", type: "keyvalue", label: "Set Values (--set)", flag: "--set", keyPlaceholder: "key", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Value" },
+            { id: "createns", type: "checkbox", label: "Create namespace (--create-namespace)", flag: "--create-namespace" },
+            { id: "dryrun", type: "checkbox", label: "Dry run (--dry-run)", flag: "--dry-run" },
+            { id: "wait", type: "checkbox", label: "Wait (--wait)", flag: "--wait" },
+          ],
+        }],
+      },
+      {
+        name: "upgrade",
+        sections: [{
+          title: "Upgrade Release",
+          defaultOpen: true,
+          fields: [
+            { id: "name", type: "text", label: "Release Name", flag: "", positional: true, placeholder: "my-release", required: true },
+            { id: "chart", type: "text", label: "Chart", flag: "", positional: true, placeholder: "bitnami/nginx", required: true },
+            { id: "namespace", type: "text", label: "Namespace (-n)", flag: "-n", placeholder: "default", halfWidth: true },
+            { id: "version", type: "text", label: "Chart Version (--version)", flag: "--version", placeholder: "1.2.3", halfWidth: true },
+            { id: "values", type: "repeatable", label: "Values Files (-f)", flag: "-f", placeholder: "values.yaml", addLabel: "+ Add Values File" },
+            { id: "set", type: "keyvalue", label: "Set Values (--set)", flag: "--set", keyPlaceholder: "key", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Value" },
+            { id: "install", type: "checkbox", label: "Install if absent (--install)", flag: "--install" },
+            { id: "dryrun", type: "checkbox", label: "Dry run (--dry-run)", flag: "--dry-run" },
+            { id: "wait", type: "checkbox", label: "Wait (--wait)", flag: "--wait" },
+            { id: "atomic", type: "checkbox", label: "Atomic (--atomic)", flag: "--atomic" },
+          ],
+        }],
+      },
+      {
+        name: "uninstall",
+        sections: [{
+          title: "Uninstall Release",
+          defaultOpen: true,
+          fields: [
+            { id: "name", type: "text", label: "Release Name", flag: "", positional: true, placeholder: "my-release", required: true },
+            { id: "namespace", type: "text", label: "Namespace (-n)", flag: "-n", placeholder: "default", halfWidth: true },
+            { id: "dryrun", type: "checkbox", label: "Dry run (--dry-run)", flag: "--dry-run" },
+            { id: "keephistory", type: "checkbox", label: "Keep history (--keep-history)", flag: "--keep-history" },
+          ],
+        }],
+      },
+      {
+        name: "list",
+        sections: [{
+          title: "List Releases",
+          defaultOpen: true,
+          fields: [
+            { id: "namespace", type: "text", label: "Namespace (-n)", flag: "-n", placeholder: "default", halfWidth: true },
+            { id: "allns", type: "checkbox", label: "All namespaces (-A)", flag: "-A" },
+            { id: "all", type: "checkbox", label: "All releases (-a)", flag: "-a" },
+            { id: "output", type: "select", label: "Output (-o)", flag: "-o", options: [
+              { value: "", label: "Default (table)" },
+              { value: "json", label: "JSON" },
+              { value: "yaml", label: "YAML" },
+            ], halfWidth: true },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── gcloud ─────────────────────────────────────────────────────
+  gcloud: {
+    binary: "gcloud",
+    subcommands: [
+      {
+        name: "compute instances list",
+        label: "compute instances list",
+        sections: [{
+          title: "List Instances",
+          defaultOpen: true,
+          fields: [
+            { id: "project", type: "text", label: "Project (--project)", flag: "--project", placeholder: "my-project", halfWidth: true },
+            { id: "zones", type: "text", label: "Zones (--zones)", flag: "--zones", placeholder: "us-central1-a", halfWidth: true },
+            { id: "filter", type: "text", label: "Filter (--filter)", flag: "--filter", placeholder: "status=RUNNING", quoted: true },
+            { id: "format", type: "select", label: "Format (--format)", flag: "--format", options: [
+              { value: "", label: "Default" },
+              { value: "json", label: "JSON" },
+              { value: "yaml", label: "YAML" },
+              { value: "table", label: "Table" },
+              { value: "csv", label: "CSV" },
+            ] },
+          ],
+        }],
+      },
+      {
+        name: "compute instances create",
+        label: "compute instances create",
+        sections: [{
+          title: "Create Instance",
+          defaultOpen: true,
+          fields: [
+            { id: "name", type: "text", label: "Instance Name", flag: "", positional: true, placeholder: "my-vm", required: true },
+            { id: "zone", type: "text", label: "Zone (--zone)", flag: "--zone", placeholder: "us-central1-a", halfWidth: true },
+            { id: "machineType", type: "text", label: "Machine Type (--machine-type)", flag: "--machine-type", placeholder: "e2-medium", halfWidth: true },
+            { id: "image", type: "text", label: "Image (--image)", flag: "--image", placeholder: "debian-11-bullseye-v20231010", halfWidth: true },
+            { id: "imageProject", type: "text", label: "Image Project (--image-project)", flag: "--image-project", placeholder: "debian-cloud", halfWidth: true },
+            { id: "bootDiskSize", type: "text", label: "Boot Disk Size (--boot-disk-size)", flag: "--boot-disk-size", placeholder: "50GB", halfWidth: true },
+            { id: "project", type: "text", label: "Project (--project)", flag: "--project", placeholder: "my-project", halfWidth: true },
+            { id: "tags", type: "text", label: "Tags (--tags)", flag: "--tags", placeholder: "http-server,https-server" },
+          ],
+        }],
+      },
+      {
+        name: "auth login",
+        label: "auth login",
+        sections: [{
+          title: "Authenticate",
+          defaultOpen: true,
+          fields: [
+            { id: "noBrowser", type: "checkbox", label: "No browser (--no-launch-browser)", flag: "--no-launch-browser" },
+            { id: "project", type: "text", label: "Set Project (--project)", flag: "--project", placeholder: "my-project" },
+            { id: "activate", type: "checkbox", label: "Activate account (--activate)", flag: "--activate" },
+          ],
+        }],
+      },
+      {
+        name: "config set",
+        label: "config set",
+        sections: [{
+          title: "Set Configuration",
+          defaultOpen: true,
+          fields: [
+            { id: "property", type: "text", label: "Property", flag: "", positional: true, placeholder: "project", required: true, hint: "e.g. project, compute/zone, compute/region" },
+            { id: "value", type: "text", label: "Value", flag: "", positional: true, placeholder: "my-project", required: true },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── ansible-playbook ───────────────────────────────────────────
+  "ansible-playbook": {
+    binary: "ansible-playbook",
+    sections: [
+      {
+        title: "Playbook",
+        defaultOpen: true,
+        fields: [
+          { id: "playbook", type: "text", label: "Playbook File", flag: "", positional: true, placeholder: "site.yml", required: true },
+          { id: "inventory", type: "text", label: "Inventory (-i)", flag: "-i", placeholder: "hosts.ini", halfWidth: true },
+          { id: "limit", type: "text", label: "Limit (--limit)", flag: "--limit", placeholder: "webservers", halfWidth: true },
+        ],
+      },
+      {
+        title: "Execution",
+        defaultOpen: true,
+        fields: [
+          { id: "tags", type: "text", label: "Tags (--tags)", flag: "--tags", placeholder: "deploy,config", halfWidth: true },
+          { id: "skipTags", type: "text", label: "Skip Tags (--skip-tags)", flag: "--skip-tags", placeholder: "slow", halfWidth: true },
+          { id: "extraVars", type: "keyvalue", label: "Extra Vars (-e)", flag: "-e", keyPlaceholder: "var", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Variable" },
+          { id: "check", type: "checkbox", label: "Check mode / Dry run (--check)", flag: "--check" },
+          { id: "diff", type: "checkbox", label: "Show diff (--diff)", flag: "--diff" },
+          { id: "verbose", type: "select", label: "Verbosity", flag: "", options: [
+            { value: "", label: "Normal" },
+            { value: "-v", label: "Verbose (-v)" },
+            { value: "-vv", label: "More Verbose (-vv)" },
+            { value: "-vvv", label: "Debug (-vvv)" },
+          ] },
+        ],
+      },
+      {
+        title: "Connection",
+        defaultOpen: false,
+        fields: [
+          { id: "user", type: "text", label: "Remote User (-u)", flag: "-u", placeholder: "deploy", halfWidth: true },
+          { id: "privateKey", type: "text", label: "Private Key (--private-key)", flag: "--private-key", placeholder: "~/.ssh/id_rsa", halfWidth: true },
+          { id: "become", type: "checkbox", label: "Become / sudo (-b)", flag: "-b" },
+          { id: "becomeUser", type: "text", label: "Become User (--become-user)", flag: "--become-user", placeholder: "root", halfWidth: true },
+          { id: "askBecomePass", type: "checkbox", label: "Ask sudo password (-K)", flag: "-K" },
+          { id: "forks", type: "number", label: "Forks (-f)", flag: "-f", placeholder: "5", halfWidth: true },
+        ],
+      },
+    ],
+  },
+
+  // ── packer ─────────────────────────────────────────────────────
+  packer: {
+    binary: "packer",
+    subcommands: [
+      {
+        name: "build",
+        sections: [{
+          title: "Build Image",
+          defaultOpen: true,
+          fields: [
+            { id: "template", type: "text", label: "Template", flag: "", positional: true, placeholder: "template.pkr.hcl", required: true },
+            { id: "varfile", type: "repeatable", label: "Var Files (-var-file)", flag: "-var-file", placeholder: "vars.pkrvars.hcl", addLabel: "+ Add Var File" },
+            { id: "var", type: "keyvalue", label: "Variables (-var)", flag: "-var", keyPlaceholder: "name", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Variable" },
+            { id: "only", type: "text", label: "Only Sources (-only)", flag: "-only", placeholder: "amazon-ebs.web", halfWidth: true },
+            { id: "except", type: "text", label: "Except Sources (-except)", flag: "-except", placeholder: "docker.local", halfWidth: true },
+            { id: "force", type: "checkbox", label: "Force (-force)", flag: "-force" },
+            { id: "parallel", type: "checkbox", label: "Parallel builds (default: true)", flag: "-parallel-builds=1", hint: "Set to disable parallel" },
+            { id: "color", type: "checkbox", label: "Colored output (-color=true)", flag: "-color=true" },
+          ],
+        }],
+      },
+      {
+        name: "validate",
+        sections: [{
+          title: "Validate Template",
+          defaultOpen: true,
+          fields: [
+            { id: "template", type: "text", label: "Template", flag: "", positional: true, placeholder: "template.pkr.hcl", required: true },
+            { id: "varfile", type: "repeatable", label: "Var Files (-var-file)", flag: "-var-file", placeholder: "vars.pkrvars.hcl", addLabel: "+ Add Var File" },
+            { id: "var", type: "keyvalue", label: "Variables (-var)", flag: "-var", keyPlaceholder: "name", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Variable" },
+            { id: "syntaxOnly", type: "checkbox", label: "Syntax only (-syntax-only)", flag: "-syntax-only" },
+          ],
+        }],
+      },
+      {
+        name: "init",
+        sections: [{
+          title: "Init Plugins",
+          defaultOpen: true,
+          fields: [
+            { id: "template", type: "text", label: "Template", flag: "", positional: true, placeholder: "template.pkr.hcl", required: true },
+            { id: "upgrade", type: "checkbox", label: "Upgrade plugins (-upgrade)", flag: "-upgrade" },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── vagrant ────────────────────────────────────────────────────
+  vagrant: {
+    binary: "vagrant",
+    subcommands: [
+      {
+        name: "up",
+        sections: [{
+          title: "Start VM",
+          defaultOpen: true,
+          fields: [
+            { id: "machine", type: "text", label: "Machine Name", flag: "", positional: true, placeholder: "default" },
+            { id: "provider", type: "select", label: "Provider (--provider)", flag: "--provider", options: [
+              { value: "", label: "Default" },
+              { value: "virtualbox", label: "VirtualBox" },
+              { value: "vmware_desktop", label: "VMware" },
+              { value: "docker", label: "Docker" },
+              { value: "libvirt", label: "Libvirt" },
+            ], halfWidth: true },
+            { id: "provision", type: "checkbox", label: "Run provisioners (--provision)", flag: "--provision" },
+            { id: "noProvision", type: "checkbox", label: "Skip provisioners (--no-provision)", flag: "--no-provision" },
+            { id: "destroy", type: "checkbox", label: "Destroy on error (--destroy-on-error)", flag: "--destroy-on-error" },
+          ],
+        }],
+      },
+      {
+        name: "ssh",
+        sections: [{
+          title: "SSH into VM",
+          defaultOpen: true,
+          fields: [
+            { id: "machine", type: "text", label: "Machine Name", flag: "", positional: true, placeholder: "default" },
+            { id: "command", type: "text", label: "Command (-c)", flag: "-c", placeholder: "ls -la", quoted: true },
+          ],
+        }],
+      },
+      {
+        name: "halt",
+        sections: [{
+          title: "Stop VM",
+          defaultOpen: true,
+          fields: [
+            { id: "machine", type: "text", label: "Machine Name", flag: "", positional: true, placeholder: "default" },
+            { id: "force", type: "checkbox", label: "Force (-f)", flag: "-f" },
+          ],
+        }],
+      },
+      {
+        name: "destroy",
+        sections: [{
+          title: "Destroy VM",
+          defaultOpen: true,
+          fields: [
+            { id: "machine", type: "text", label: "Machine Name", flag: "", positional: true, placeholder: "default" },
+            { id: "force", type: "checkbox", label: "Force (-f)", flag: "-f" },
+            { id: "graceful", type: "checkbox", label: "Graceful (--graceful)", flag: "--graceful" },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── cargo ──────────────────────────────────────────────────────
+  cargo: {
+    binary: "cargo",
+    subcommands: [
+      {
+        name: "build",
+        sections: [{
+          title: "Build",
+          defaultOpen: true,
+          fields: [
+            { id: "release", type: "checkbox", label: "Release mode (--release)", flag: "--release" },
+            { id: "target", type: "text", label: "Target (--target)", flag: "--target", placeholder: "x86_64-unknown-linux-gnu", halfWidth: true },
+            { id: "features", type: "text", label: "Features (--features)", flag: "--features", placeholder: "serde,tokio", halfWidth: true },
+            { id: "allFeatures", type: "checkbox", label: "All features (--all-features)", flag: "--all-features" },
+            { id: "noDefaultFeatures", type: "checkbox", label: "No default features (--no-default-features)", flag: "--no-default-features" },
+            { id: "jobs", type: "number", label: "Jobs (-j)", flag: "-j", placeholder: "4", halfWidth: true },
+            { id: "verbose", type: "checkbox", label: "Verbose (-v)", flag: "-v" },
+          ],
+        }],
+      },
+      {
+        name: "run",
+        sections: [{
+          title: "Run",
+          defaultOpen: true,
+          fields: [
+            { id: "release", type: "checkbox", label: "Release mode (--release)", flag: "--release" },
+            { id: "bin", type: "text", label: "Binary (--bin)", flag: "--bin", placeholder: "my-binary", halfWidth: true },
+            { id: "example", type: "text", label: "Example (--example)", flag: "--example", placeholder: "basic", halfWidth: true },
+            { id: "features", type: "text", label: "Features (--features)", flag: "--features", placeholder: "serde", halfWidth: true },
+          ],
+        }],
+      },
+      {
+        name: "test",
+        sections: [{
+          title: "Test",
+          defaultOpen: true,
+          fields: [
+            { id: "testname", type: "text", label: "Test Name Filter", flag: "", positional: true, placeholder: "test_login" },
+            { id: "release", type: "checkbox", label: "Release mode (--release)", flag: "--release" },
+            { id: "nocapture", type: "checkbox", label: "Show output (-- --nocapture)", flag: "-- --nocapture" },
+            { id: "doc", type: "checkbox", label: "Doc tests only (--doc)", flag: "--doc" },
+            { id: "lib", type: "checkbox", label: "Lib only (--lib)", flag: "--lib" },
+            { id: "jobs", type: "number", label: "Jobs (-j)", flag: "-j", placeholder: "4", halfWidth: true },
+          ],
+        }],
+      },
+      {
+        name: "add",
+        sections: [{
+          title: "Add Dependency",
+          defaultOpen: true,
+          fields: [
+            { id: "crate", type: "text", label: "Crate", flag: "", positional: true, placeholder: "serde", required: true },
+            { id: "features", type: "text", label: "Features (-F)", flag: "-F", placeholder: "derive,json", halfWidth: true },
+            { id: "dev", type: "checkbox", label: "Dev dependency (--dev)", flag: "--dev" },
+            { id: "build", type: "checkbox", label: "Build dependency (--build)", flag: "--build" },
+            { id: "optional", type: "checkbox", label: "Optional (--optional)", flag: "--optional" },
+            { id: "rename", type: "text", label: "Rename (--rename)", flag: "--rename", placeholder: "my_serde", halfWidth: true },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── yarn ───────────────────────────────────────────────────────
+  yarn: {
+    binary: "yarn",
+    subcommands: [
+      {
+        name: "add",
+        sections: [{
+          title: "Add Packages",
+          defaultOpen: true,
+          fields: [
+            { id: "packages", type: "repeatable", label: "Packages", flag: "", placeholder: "react", addLabel: "+ Add Package" },
+            { id: "dev", type: "checkbox", label: "Dev dependency (-D)", flag: "-D" },
+            { id: "peer", type: "checkbox", label: "Peer dependency (-P)", flag: "-P" },
+            { id: "exact", type: "checkbox", label: "Exact version (-E)", flag: "-E" },
+          ],
+        }],
+      },
+      {
+        name: "remove",
+        sections: [{
+          title: "Remove Packages",
+          defaultOpen: true,
+          fields: [
+            { id: "packages", type: "repeatable", label: "Packages", flag: "", placeholder: "react", addLabel: "+ Add Package" },
+          ],
+        }],
+      },
+      {
+        name: "run",
+        sections: [{
+          title: "Run Script",
+          defaultOpen: true,
+          fields: [
+            { id: "script", type: "text", label: "Script Name", flag: "", positional: true, placeholder: "build", required: true },
+          ],
+        }],
+      },
+      {
+        name: "dlx",
+        sections: [{
+          title: "Execute Package",
+          defaultOpen: true,
+          fields: [
+            { id: "package", type: "text", label: "Package", flag: "", positional: true, placeholder: "create-react-app my-app", required: true },
+            { id: "quiet", type: "checkbox", label: "Quiet (-q)", flag: "-q" },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── pnpm ───────────────────────────────────────────────────────
+  pnpm: {
+    binary: "pnpm",
+    subcommands: [
+      {
+        name: "add",
+        sections: [{
+          title: "Add Packages",
+          defaultOpen: true,
+          fields: [
+            { id: "packages", type: "repeatable", label: "Packages", flag: "", placeholder: "express", addLabel: "+ Add Package" },
+            { id: "saveDev", type: "checkbox", label: "Dev dependency (-D)", flag: "-D" },
+            { id: "saveExact", type: "checkbox", label: "Exact version (-E)", flag: "-E" },
+            { id: "global", type: "checkbox", label: "Global (-g)", flag: "-g" },
+            { id: "workspace", type: "checkbox", label: "Workspace (-w)", flag: "-w" },
+            { id: "filter", type: "text", label: "Filter (--filter)", flag: "--filter", placeholder: "my-package", halfWidth: true },
+          ],
+        }],
+      },
+      {
+        name: "run",
+        sections: [{
+          title: "Run Script",
+          defaultOpen: true,
+          fields: [
+            { id: "script", type: "text", label: "Script Name", flag: "", positional: true, placeholder: "build", required: true },
+            { id: "filter", type: "text", label: "Filter (--filter)", flag: "--filter", placeholder: "my-package", halfWidth: true },
+            { id: "recursive", type: "checkbox", label: "Recursive (-r)", flag: "-r" },
+            { id: "parallel", type: "checkbox", label: "Parallel (--parallel)", flag: "--parallel" },
+          ],
+        }],
+      },
+      {
+        name: "install",
+        sections: [{
+          title: "Install",
+          defaultOpen: true,
+          fields: [
+            { id: "frozen", type: "checkbox", label: "Frozen lockfile (--frozen-lockfile)", flag: "--frozen-lockfile" },
+            { id: "noDev", type: "checkbox", label: "Production only (-P)", flag: "-P" },
+            { id: "shamefully", type: "checkbox", label: "Shamefully hoist (--shamefully-hoist)", flag: "--shamefully-hoist" },
+            { id: "filter", type: "text", label: "Filter (--filter)", flag: "--filter", placeholder: "my-package" },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── pandoc ─────────────────────────────────────────────────────
+  pandoc: {
+    binary: "pandoc",
+    sections: [
+      {
+        title: "Input / Output",
+        defaultOpen: true,
+        fields: [
+          { id: "input", type: "text", label: "Input File", flag: "", positional: true, placeholder: "document.md", required: true },
+          { id: "output", type: "text", label: "Output File (-o)", flag: "-o", placeholder: "output.pdf", required: true, halfWidth: true },
+          { id: "from", type: "select", label: "From Format (-f)", flag: "-f", options: [
+            { value: "", label: "Auto-detect" },
+            { value: "markdown", label: "Markdown" },
+            { value: "html", label: "HTML" },
+            { value: "latex", label: "LaTeX" },
+            { value: "rst", label: "reStructuredText" },
+            { value: "docx", label: "DOCX" },
+            { value: "org", label: "Org-mode" },
+            { value: "csv", label: "CSV" },
+          ], halfWidth: true },
+          { id: "to", type: "select", label: "To Format (-t)", flag: "-t", options: [
+            { value: "", label: "Auto-detect from output" },
+            { value: "html", label: "HTML" },
+            { value: "pdf", label: "PDF" },
+            { value: "latex", label: "LaTeX" },
+            { value: "docx", label: "DOCX" },
+            { value: "epub", label: "EPUB" },
+            { value: "rst", label: "reStructuredText" },
+            { value: "plain", label: "Plain Text" },
+            { value: "revealjs", label: "Reveal.js Slides" },
+          ] },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: true,
+        fields: [
+          { id: "standalone", type: "checkbox", label: "Standalone (-s)", flag: "-s" },
+          { id: "toc", type: "checkbox", label: "Table of contents (--toc)", flag: "--toc" },
+          { id: "template", type: "text", label: "Template (--template)", flag: "--template", placeholder: "my-template.html", halfWidth: true },
+          { id: "css", type: "text", label: "CSS (--css)", flag: "--css", placeholder: "style.css", halfWidth: true },
+          { id: "metadata", type: "keyvalue", label: "Metadata (-M)", flag: "-M", keyPlaceholder: "key", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Metadata" },
+          { id: "variable", type: "keyvalue", label: "Variables (-V)", flag: "-V", keyPlaceholder: "key", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Variable" },
+        ],
+      },
+      {
+        title: "Advanced",
+        defaultOpen: false,
+        fields: [
+          { id: "numberSections", type: "checkbox", label: "Number sections (--number-sections)", flag: "--number-sections" },
+          { id: "highlight", type: "select", label: "Highlight Style (--highlight-style)", flag: "--highlight-style", options: [
+            { value: "", label: "Default" },
+            { value: "pygments", label: "Pygments" },
+            { value: "kate", label: "Kate" },
+            { value: "monochrome", label: "Monochrome" },
+            { value: "breezeDark", label: "Breeze Dark" },
+            { value: "espresso", label: "Espresso" },
+            { value: "zenburn", label: "Zenburn" },
+            { value: "haddock", label: "Haddock" },
+            { value: "tango", label: "Tango" },
+          ], halfWidth: true },
+          { id: "pdfEngine", type: "select", label: "PDF Engine (--pdf-engine)", flag: "--pdf-engine", options: [
+            { value: "", label: "Default" },
+            { value: "xelatex", label: "XeLaTeX" },
+            { value: "lualatex", label: "LuaLaTeX" },
+            { value: "pdflatex", label: "pdfLaTeX" },
+            { value: "wkhtmltopdf", label: "wkhtmltopdf" },
+            { value: "weasyprint", label: "WeasyPrint" },
+          ], halfWidth: true },
+          { id: "filter", type: "repeatable", label: "Filters (--filter)", flag: "--filter", placeholder: "pandoc-citeproc", addLabel: "+ Add Filter" },
+        ],
+      },
+    ],
+  },
+
+  // ── make ───────────────────────────────────────────────────────
+  make: {
+    binary: "make",
+    sections: [
+      {
+        title: "Target",
+        defaultOpen: true,
+        fields: [
+          { id: "target", type: "text", label: "Target", flag: "", positional: true, placeholder: "build", hint: "Target name from Makefile" },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: true,
+        fields: [
+          { id: "file", type: "text", label: "Makefile (-f)", flag: "-f", placeholder: "Makefile", halfWidth: true },
+          { id: "jobs", type: "number", label: "Parallel Jobs (-j)", flag: "-j", placeholder: "4", halfWidth: true },
+          { id: "directory", type: "text", label: "Directory (-C)", flag: "-C", placeholder: "./src", halfWidth: true },
+          { id: "dryrun", type: "checkbox", label: "Dry run (-n)", flag: "-n" },
+          { id: "keep", type: "checkbox", label: "Keep going (-k)", flag: "-k" },
+          { id: "silent", type: "checkbox", label: "Silent (-s)", flag: "-s" },
+          { id: "always", type: "checkbox", label: "Always make (-B)", flag: "-B" },
+          { id: "vars", type: "keyvalue", label: "Variables", flag: "", keyPlaceholder: "VAR", valuePlaceholder: "value", separator: "=", addLabel: "+ Add Variable" },
+        ],
+      },
+    ],
+  },
+
+  // ── rclone ─────────────────────────────────────────────────────
+  rclone: {
+    binary: "rclone",
+    subcommands: [
+      {
+        name: "copy",
+        sections: [{
+          title: "Copy Files",
+          defaultOpen: true,
+          fields: [
+            { id: "source", type: "text", label: "Source", flag: "", positional: true, placeholder: "remote:bucket/path", required: true },
+            { id: "dest", type: "text", label: "Destination", flag: "", positional: true, placeholder: "./local/path", required: true },
+            { id: "progress", type: "checkbox", label: "Show progress (-P)", flag: "-P" },
+            { id: "dryrun", type: "checkbox", label: "Dry run (--dry-run)", flag: "--dry-run" },
+            { id: "transfers", type: "number", label: "Transfers (--transfers)", flag: "--transfers", placeholder: "4", halfWidth: true },
+            { id: "bwlimit", type: "text", label: "Bandwidth Limit (--bwlimit)", flag: "--bwlimit", placeholder: "10M", halfWidth: true },
+            { id: "exclude", type: "repeatable", label: "Exclude (--exclude)", flag: "--exclude", placeholder: "*.tmp", addLabel: "+ Add Exclude" },
+            { id: "include", type: "repeatable", label: "Include (--include)", flag: "--include", placeholder: "*.jpg", addLabel: "+ Add Include" },
+          ],
+        }],
+      },
+      {
+        name: "sync",
+        sections: [{
+          title: "Sync Directories",
+          defaultOpen: true,
+          fields: [
+            { id: "source", type: "text", label: "Source", flag: "", positional: true, placeholder: "./local/path", required: true },
+            { id: "dest", type: "text", label: "Destination", flag: "", positional: true, placeholder: "remote:bucket/path", required: true },
+            { id: "progress", type: "checkbox", label: "Show progress (-P)", flag: "-P" },
+            { id: "dryrun", type: "checkbox", label: "Dry run (--dry-run)", flag: "--dry-run" },
+            { id: "transfers", type: "number", label: "Transfers (--transfers)", flag: "--transfers", placeholder: "4", halfWidth: true },
+            { id: "bwlimit", type: "text", label: "Bandwidth Limit (--bwlimit)", flag: "--bwlimit", placeholder: "10M", halfWidth: true },
+            { id: "exclude", type: "repeatable", label: "Exclude (--exclude)", flag: "--exclude", placeholder: "*.tmp", addLabel: "+ Add Exclude" },
+          ],
+        }],
+      },
+      {
+        name: "ls",
+        sections: [{
+          title: "List Files",
+          defaultOpen: true,
+          fields: [
+            { id: "remote", type: "text", label: "Remote Path", flag: "", positional: true, placeholder: "remote:bucket/path", required: true },
+            { id: "recursive", type: "checkbox", label: "Recursive (--recursive)", flag: "--recursive" },
+            { id: "maxdepth", type: "number", label: "Max Depth (--max-depth)", flag: "--max-depth", placeholder: "1", halfWidth: true },
+          ],
+        }],
+      },
+    ],
+  },
+
+  // ── nmap ───────────────────────────────────────────────────────
+  nmap: {
+    binary: "nmap",
+    sections: [
+      {
+        title: "Target",
+        defaultOpen: true,
+        fields: [
+          { id: "target", type: "text", label: "Target Host(s)", flag: "", positional: true, placeholder: "192.168.1.0/24", required: true, hint: "IP, hostname, CIDR, or range" },
+        ],
+      },
+      {
+        title: "Scan Type",
+        defaultOpen: true,
+        fields: [
+          { id: "scanType", type: "select", label: "Scan Type", flag: "", options: [
+            { value: "", label: "Default (SYN)" },
+            { value: "-sT", label: "TCP Connect (-sT)" },
+            { value: "-sS", label: "SYN Stealth (-sS)" },
+            { value: "-sU", label: "UDP (-sU)" },
+            { value: "-sn", label: "Ping Scan / No Port (-sn)" },
+            { value: "-sV", label: "Version Detection (-sV)" },
+          ] },
+          { id: "ports", type: "text", label: "Ports (-p)", flag: "-p", placeholder: "22,80,443 or 1-1000", halfWidth: true },
+          { id: "topPorts", type: "number", label: "Top Ports (--top-ports)", flag: "--top-ports", placeholder: "100", halfWidth: true },
+          { id: "os", type: "checkbox", label: "OS Detection (-O)", flag: "-O" },
+          { id: "serviceVersion", type: "checkbox", label: "Service version (-sV)", flag: "-sV" },
+          { id: "aggressive", type: "checkbox", label: "Aggressive (-A)", flag: "-A" },
+        ],
+      },
+      {
+        title: "Output",
+        defaultOpen: false,
+        fields: [
+          { id: "output", type: "text", label: "Output File (-oN)", flag: "-oN", placeholder: "scan.txt", halfWidth: true },
+          { id: "xml", type: "text", label: "XML Output (-oX)", flag: "-oX", placeholder: "scan.xml", halfWidth: true },
+          { id: "verbose", type: "checkbox", label: "Verbose (-v)", flag: "-v" },
+          { id: "reason", type: "checkbox", label: "Show reason (--reason)", flag: "--reason" },
+          { id: "timing", type: "select", label: "Timing (-T)", flag: "-T", options: [
+            { value: "", label: "Default (T3)" },
+            { value: "0", label: "Paranoid (T0)" },
+            { value: "1", label: "Sneaky (T1)" },
+            { value: "2", label: "Polite (T2)" },
+            { value: "3", label: "Normal (T3)" },
+            { value: "4", label: "Aggressive (T4)" },
+            { value: "5", label: "Insane (T5)" },
+          ], halfWidth: true },
+        ],
+      },
+    ],
+  },
+
+  // ── mtr ────────────────────────────────────────────────────────
+  mtr: {
+    binary: "mtr",
+    sections: [
+      {
+        title: "Target",
+        defaultOpen: true,
+        fields: [
+          { id: "host", type: "text", label: "Host", flag: "", positional: true, placeholder: "google.com", required: true },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: true,
+        fields: [
+          { id: "report", type: "checkbox", label: "Report mode (-r)", flag: "-r" },
+          { id: "reportWide", type: "checkbox", label: "Wide report (-w)", flag: "-w" },
+          { id: "cycles", type: "number", label: "Report cycles (-c)", flag: "-c", placeholder: "10", halfWidth: true },
+          { id: "interval", type: "number", label: "Interval secs (-i)", flag: "-i", placeholder: "1", halfWidth: true },
+          { id: "maxhops", type: "number", label: "Max hops (-m)", flag: "-m", placeholder: "30", halfWidth: true },
+          { id: "tcp", type: "checkbox", label: "TCP mode (--tcp)", flag: "--tcp" },
+          { id: "udp", type: "checkbox", label: "UDP mode (--udp)", flag: "--udp" },
+          { id: "port", type: "number", label: "Port (-P)", flag: "-P", placeholder: "80", halfWidth: true },
+          { id: "noresolve", type: "checkbox", label: "No DNS resolve (-n)", flag: "-n" },
+          { id: "json", type: "checkbox", label: "JSON output (--json)", flag: "--json" },
+          { id: "csv", type: "checkbox", label: "CSV output (--csv)", flag: "--csv" },
+          { id: "ipv4", type: "checkbox", label: "IPv4 only (-4)", flag: "-4" },
+          { id: "ipv6", type: "checkbox", label: "IPv6 only (-6)", flag: "-6" },
+        ],
+      },
+    ],
+  },
+
+  // ── whois ──────────────────────────────────────────────────────
+  whois: {
+    binary: "whois",
+    sections: [
+      {
+        title: "Query",
+        defaultOpen: true,
+        fields: [
+          { id: "domain", type: "text", label: "Domain / IP", flag: "", positional: true, placeholder: "example.com", required: true },
+        ],
+      },
+      {
+        title: "Options",
+        defaultOpen: false,
+        fields: [
+          { id: "server", type: "text", label: "WHOIS Server (-h)", flag: "-h", placeholder: "whois.verisign-grs.com", halfWidth: true },
+          { id: "port", type: "number", label: "Port (-p)", flag: "-p", placeholder: "43", halfWidth: true },
+          { id: "norecurse", type: "checkbox", label: "No recursion (-r)", flag: "-r" },
+        ],
+      },
+    ],
+  },
+
+  // ── ffprobe ────────────────────────────────────────────────────
+  ffprobe: {
+    binary: "ffprobe",
+    sections: [
+      {
+        title: "Input",
+        defaultOpen: true,
+        fields: [
+          { id: "input", type: "text", label: "Input File", flag: "", positional: true, placeholder: "video.mp4", required: true },
+        ],
+      },
+      {
+        title: "Output Options",
+        defaultOpen: true,
+        fields: [
+          { id: "showStreams", type: "checkbox", label: "Show streams (-show_streams)", flag: "-show_streams" },
+          { id: "showFormat", type: "checkbox", label: "Show format (-show_format)", flag: "-show_format" },
+          { id: "showFrames", type: "checkbox", label: "Show frames (-show_frames)", flag: "-show_frames" },
+          { id: "showEntries", type: "text", label: "Show entries (-show_entries)", flag: "-show_entries", placeholder: "stream=codec_name,width,height", halfWidth: true },
+          { id: "selectStreams", type: "select", label: "Select Stream (-select_streams)", flag: "-select_streams", options: [
+            { value: "", label: "All" },
+            { value: "v:0", label: "Video (v:0)" },
+            { value: "a:0", label: "Audio (a:0)" },
+            { value: "s:0", label: "Subtitle (s:0)" },
+          ], halfWidth: true },
+          { id: "outputFormat", type: "select", label: "Output Format (-of)", flag: "-of", options: [
+            { value: "", label: "Default" },
+            { value: "json", label: "JSON" },
+            { value: "csv", label: "CSV" },
+            { value: "xml", label: "XML" },
+            { value: "flat", label: "Flat" },
+            { value: "ini", label: "INI" },
+          ], halfWidth: true },
+          { id: "pretty", type: "checkbox", label: "Pretty print (-pretty)", flag: "-pretty" },
+          { id: "quiet", type: "checkbox", label: "Suppress banner (-hide_banner)", flag: "-hide_banner" },
+        ],
+      },
+    ],
+  },
+
+  // ── magick ─────────────────────────────────────────────────────
+  magick: {
+    binary: "magick",
+    sections: [
+      {
+        title: "Input / Output",
+        defaultOpen: true,
+        fields: [
+          { id: "input", type: "text", label: "Input File", flag: "", positional: true, placeholder: "photo.jpg", required: true },
+          { id: "output", type: "text", label: "Output File", flag: "", positional: true, placeholder: "photo.png", required: true },
+        ],
+      },
+      {
+        title: "Transform",
+        defaultOpen: true,
+        fields: [
+          { id: "resize", type: "text", label: "Resize (-resize)", flag: "-resize", placeholder: "800x600", halfWidth: true, hint: "WxH, 50%, 800x (width only)" },
+          { id: "crop", type: "text", label: "Crop (-crop)", flag: "-crop", placeholder: "640x480+10+20", halfWidth: true, hint: "WxH+X+Y" },
+          { id: "rotate", type: "number", label: "Rotate (-rotate)", flag: "-rotate", placeholder: "90", halfWidth: true },
+          { id: "flip", type: "checkbox", label: "Flip vertical (-flip)", flag: "-flip" },
+          { id: "flop", type: "checkbox", label: "Flip horizontal (-flop)", flag: "-flop" },
+          { id: "strip", type: "checkbox", label: "Strip metadata (-strip)", flag: "-strip" },
+        ],
+      },
+      {
+        title: "Quality & Effects",
+        defaultOpen: false,
+        fields: [
+          { id: "quality", type: "number", label: "Quality (-quality)", flag: "-quality", placeholder: "85", halfWidth: true, min: 1, max: 100 },
+          { id: "density", type: "text", label: "Density / DPI (-density)", flag: "-density", placeholder: "300", halfWidth: true },
+          { id: "blur", type: "text", label: "Blur (-blur)", flag: "-blur", placeholder: "0x3", halfWidth: true },
+          { id: "sharpen", type: "text", label: "Sharpen (-sharpen)", flag: "-sharpen", placeholder: "0x1", halfWidth: true },
+          { id: "grayscale", type: "checkbox", label: "Grayscale (-colorspace Gray)", flag: "-colorspace Gray" },
+          { id: "negate", type: "checkbox", label: "Negate (-negate)", flag: "-negate" },
+          { id: "auto_orient", type: "checkbox", label: "Auto-orient (-auto-orient)", flag: "-auto-orient" },
+        ],
+      },
+    ],
+  },
 };
