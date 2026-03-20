@@ -42,7 +42,7 @@ export default function Home() {
               Get Started
             </Link>
             <a
-              href="https://github.com/hextrot"
+              href="https://github.com/hextrot/cmdforge"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-2.5 rounded-lg border border-[var(--color-border)] text-[var(--color-text)] font-medium hover:bg-[var(--color-surface-2)] transition-colors"
