@@ -36,7 +36,7 @@ export default function Home() {
 
           <div className="flex items-center justify-center gap-3 mb-16">
             <Link
-              href="/curl"
+              href="#tools"
               className="px-6 py-2.5 rounded-lg bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-accent-hover)] transition-colors"
             >
               Get Started
@@ -90,7 +90,7 @@ export default function Home() {
         </section>
 
         {/* Tool Grid by Category */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+        <section id="tools" className="max-w-6xl mx-auto px-4 sm:px-6 pb-20 scroll-mt-20">
           {CATEGORY_ORDER.map((category) => {
             const tools = grouped[category];
             if (!tools?.length) return null;

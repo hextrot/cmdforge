@@ -75,14 +75,15 @@ export default function Navbar() {
             </button>
 
             {open && (
-              <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-[540px] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-2xl overflow-hidden">
-                <div className="p-3 grid grid-cols-2 gap-x-3 gap-y-1 max-h-[70vh] overflow-y-auto">
+              <div className="absolute left-1/2 -translate-x-1/2 mt-2 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-2xl overflow-hidden"
+                   style={{ width: "min(90vw, 720px)" }}>
+                <div className="p-4 columns-3 gap-4" style={{ columnFill: "balance" }}>
                   {CATEGORY_ORDER.map((category) => {
                     const tools = grouped[category];
                     if (!tools?.length) return null;
                     return (
-                      <div key={category} className="mb-2">
-                        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider px-2 py-1">
+                      <div key={category} className="break-inside-avoid mb-3">
+                        <div className="text-[10px] font-semibold text-[var(--color-text-muted)] uppercase tracking-wider px-2 py-1 mb-0.5">
                           {category}
                         </div>
                         {tools.map((tool) => {
@@ -92,13 +93,13 @@ export default function Navbar() {
                             <Link
                               key={tool.slug}
                               href={href}
-                              className={`flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm transition-colors ${
+                              className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-sm transition-colors ${
                                 isActive
                                   ? "bg-[var(--color-accent-dim)] text-[var(--color-accent-hover)]"
                                   : "text-[var(--color-text)] hover:bg-[var(--color-surface-2)]"
                               }`}
                             >
-                              <ToolIcon icon={tool.icon} color={tool.color} size={18} />
+                              <ToolIcon icon={tool.icon} color={tool.color} size={16} />
                               <span className="font-medium">{tool.name}</span>
                             </Link>
                           );
